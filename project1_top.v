@@ -4,7 +4,7 @@ module project1_top #(
 	input							clk,
 	input		[width-1:0]		a,
 	input		[width-1:0]		b,
-	output	[2*width-1:0]	c,
+	output	[2*width-1:0]	out,
 	output						err
 );
 	
@@ -12,7 +12,7 @@ module project1_top #(
 	add_top adder(
 		.a				(a),
 		.b				(b),
-		.sum			(c),
+		.sum			(out),
 		.overflow	(err)
 	);
 
