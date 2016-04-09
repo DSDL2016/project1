@@ -1,34 +1,32 @@
 module div_top #(
 	parameter width = 6
 )(
-	input						  clk;
-	input						  sign;
-	input		  [width-1:0] dividend, divider;
-	output reg [width-1:0] quotient;
-	output	  [width-1:0] remainder;
-	output					  ready;
+	input						  clk,
+	input						  sign,
+	input		  [width-1:0] dividend, divider,
+	output reg [width-1:0] quotient,
+	output	  [width-1:0] remainder,
+	output					  ready
 );
 
+	// temporary storage for intermediate steps
    reg [width-1:0]	quotient_temp;
    reg [2*width-1:0] dividend_copy, divider_copy, diff;
+	
+	// take note on whether the output has to be negated
    reg					negative_output;
-
-   wire [width-1:0]	remainder = (!negative_output) ?
-                             dividend_copy[31:0] :
-                             ~dividend_copy[31:0] + 1'b1;
-
-   reg [5:0]			bit;
-   wire					ready = !bit;
+	
+	// internal status of the divider
+	// ...output value is copied when ready is true
+   reg [$clog2(width):0] bit;
 
 	initial begin
 		bit = 0;
 		negative_output = 0;
 	end
 	
-   always @(posedge clk)
-
-     if( ready ) begin
-
+	always @(posedge clk) begin
+     if(ready) begin
         bit = 6'd32;
         quotient = 0;
         quotient_temp = 0;
@@ -64,5 +62,10 @@ module div_top #(
         divider_copy = divider_copy >> 1;
         bit = bit - 1'b1;
 
-     end
+		end
+	end
+	
+	assign remainder = (!negative_output) ? dividend_copy[31:0] : -dividend_copy[31:0];
+	assign ready = !bit;
+	
 endmodule
