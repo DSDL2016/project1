@@ -3,11 +3,28 @@ module div_top #(
 )(
 	input						  clk,
 	input						  sign,
-	input		  [width-1:0] dividend, divider,
-	output reg [width-1:0] quotient,
-	output	  [width-1:0] remainder,
+	// a = b*q + r
+	input		  [width-1:0] a, b,
+	output reg [width-1:0] q, r,
 	output					  ready
 );
-
+	
+	reg [width-1:0] q_tmp, r_tmp;
+	
+	// internal counter
+	
+	// divider logic control
+	
+	// prescale
+	
+	// signed bit conversion
+	
+	// carry free adder
+	
+	// digit adjustment
+	
+	// refresh output
+	
+	// rewrite output
 	
 endmodule
