@@ -1,2 +1,6 @@
 # complied result
-output_files/*
+output_files/
+
+# project database
+db/
+incremental_db/
