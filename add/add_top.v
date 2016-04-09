@@ -1,8 +1,8 @@
-module add_top(
+module add_top #(
 	parameter width = 6
 )(
 	input		[width-1:0]	a,
-	input		[widht-1:0]	b,
+	input		[width-1:0]	b,
 	output	[width-1:0]	sum,
 	output					overflow
 );
@@ -13,7 +13,7 @@ module add_top(
 	// TODO: use carry look ahead instead of ripple
 	genvar i;
 	generate
-		for(i = 0; i < width; i = i+1) begin
+		for(i = 0; i < width; i = i+1) begin : FA_CONCAT
 			full_adder fa(
 				.a			(a[i]),
 				.b			(b[i]),
