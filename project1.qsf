@@ -84,3 +84,4 @@ set_location_assignment PIN_A13 -to b[3]
 set_location_assignment PIN_N1 -to b[4]
 set_location_assignment PIN_P1 -to b[5]
 set_location_assignment PIN_Y12 -to err
+set_global_assignment -name VERILOG_FILE div/div_top.v

@@ -9,11 +9,24 @@ module project1_top #(
 );
 	
 	// TODO: wire err signal into OR gate
-	add_top adder(
+	add_top add(
 		.a				(a),
 		.b				(b),
 		.sum			(out),
 		.overflow	(err)
 	);
-
+	
+//	sub_top sub(
+//		.a				(a),
+//		.b				(b),
+//		.rem			(out),
+//		.overflow	(err)
+//	);
+//	
+//	mul_top mul(
+//	);
+//	
+//	div_top div(
+//	);
+	
 endmodule
