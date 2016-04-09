@@ -1,5 +1,6 @@
 # complied result
 output_files/
+*.rpt
 
 # project database
 db/
