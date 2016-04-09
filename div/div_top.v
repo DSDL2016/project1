@@ -52,9 +52,7 @@ module div_top #(
 
         end
 
-        quotient = (!negative_output) ?
-                   quotient_temp :
-                   ~quotient_temp + 1'b1;
+        quotient = (!negative_output) ? quotient_temp : -quotient_temp;
 
         divider_copy = divider_copy >> 1;
         bit = bit - 1'b1;
