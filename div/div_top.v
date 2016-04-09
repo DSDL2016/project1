@@ -27,7 +27,7 @@ module div_top #(
 	
 	always @(posedge clk) begin
      if(ready) begin
-        bit = 6'd32;
+        bit = {$clog2(width){1'b1}};
         quotient = 0;
         quotient_temp = 0;
         dividend_copy = (!sign || !dividend[31]) ?
@@ -37,10 +37,7 @@ module div_top #(
                        {1'b0,divider,31'd0} :
                        {1'b0,~divider + 1'b1,31'd0};
 
-        negative_output = sign &&
-                          ((divider[31] && !dividend[31])
-                        ||(!divider[31] && dividend[31]));
-
+        negative_output = sign && (divider[width-1] ^ dividend[width-1]);
      end
      else if ( bit > 0 ) begin
 
