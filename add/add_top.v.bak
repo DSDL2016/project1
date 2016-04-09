@@ -1,0 +1,11 @@
+module add_top(
+	parameter width = 6
+)(
+	input		[width-1:0]	a,
+	input		[widht-1:0]	b,
+	output	[width-1:0]	sum
+);
+
+	
+
+endmodule
