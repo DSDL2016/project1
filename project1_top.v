@@ -27,7 +27,14 @@ module project1_top #(
 //	mul_top mul(
 //	);
 //	
-//	div_top div(
-//	);
+	div_top div(
+		.clk			(clk),
+		.sign			(1'b0),
+		.a				(a),
+		.b				(b),
+		.q				(),
+		.r				(),
+		.ready		()
+	);
 	
 endmodule
