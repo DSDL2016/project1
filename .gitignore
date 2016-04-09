@@ -4,3 +4,6 @@ output_files/
 # project database
 db/
 incremental_db/
+
+# generated simulations
+simluation/
