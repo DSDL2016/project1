@@ -8,11 +8,11 @@ module seg_disp_top #(
     output reg [4*digits-1:0] bcd,
     output                    done
 );
-	
-	 /*
-	  * shift-and-add-3 algorithm
-	  */
-	  
+
+    /*
+     * shift-and-add-3 algorithm
+     */
+
     // width of bit counter
     localparam  cnt_width = $clog2(width);
 
