@@ -1,9 +1,10 @@
 module add_top #(
 	parameter width = 6
 )(
+	input						c_in,
 	input		[width-1:0]	a,
 	input		[width-1:0]	b,
-	output	[width-1:0]	sum,
+	output	[width-1:0]	out,
 	output					overflow
 );
 	
@@ -15,17 +16,17 @@ module add_top #(
 	generate
 		for(i = 0; i < width; i = i+1) begin : FA_CONCAT
 			full_adder fa(
-				.a			(a[i]),
-				.b			(b[i]),
-				.c_in		(carry[i]),
-				.sum		(sum[i]),
-				.c_out	(carry[i+1])
+				.a		 (a[i]),
+				.b		 (b[i]),
+				.c_in	 (carry[i]),
+				.sum	 (out[i]),
+				.c_out (carry[i+1])
 			);
 		end
 	endgenerate
 	
-	// first bit is never 1'b1
-	assign carry[0] = 1'b0;
+	// c_in is 1'b0 for ADD
+	assign carry[0] = c_in;
 	assign overflow = carry[width];
 	
 endmodule
