@@ -3,7 +3,7 @@ module mux_2_top #(
 )(
 	input [width-1:0]      a, b,
 	input                  sel,
-    output reg [width-1:0] out
+    output reg [width*2-1:0] out
 );
 
    integer                 sum = 0;

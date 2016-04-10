@@ -7,7 +7,7 @@ module mux_tb;
    localparam range  = 64; // This should be 2^{wdith}
 
    reg  [width-1:0] x, y;
-   wire [width-1:0] out;
+   wire [width*2-1:0] out;
    wire             c_out;
    reg              sel;
    
