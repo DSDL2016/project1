@@ -6,7 +6,7 @@ module project1_top #(
 	input	 [width-1:0]	b,
 	input  [2:0]			func,
 	output [2*width-1:0]	out,
-	output [6:0]			seg_a_1, seg_a_10, seg_b_1, seg_b_10,
+	output [6:0]			seg_4, seg_3, seg_2, seg_1,
 	output					err
 );
 

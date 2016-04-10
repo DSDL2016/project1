@@ -1,0 +1,8 @@
+module add_3(
+	input  [3:0] binary,
+	output [3:0] bcd
+)
+
+
+
+endmodule

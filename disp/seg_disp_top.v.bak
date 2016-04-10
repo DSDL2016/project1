@@ -1,0 +1,6 @@
+module seg_disp #(
+	parameter width = 6,
+	parameter digits = 2
+)(
+	
+)
