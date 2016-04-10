@@ -19,10 +19,11 @@ module project1_top #(
 		.overflow (err)
 	);
 	
-	seg_disp_top a_seg(
-		.bin	  (a),
-		.bcd_1  (seg_3),
-		.bcd_10 (seg_4) 
-	);
+// DEPRECATED
+//	seg_disp_top a_seg(
+//		.bin	  (a),
+//		.bcd_1  (seg_3),
+//		.bcd_10 (seg_4) 
+//	);
 	
 endmodule
