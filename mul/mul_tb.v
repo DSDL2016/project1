@@ -1,17 +1,17 @@
 `timescale 1 ns/1 ns
 
 
-module mux_tb;
+module mul_tb;
 
    localparam width = 6;
-   localparam range  = 64; // This should be 2^{wdith}
+   localparam range  = 32; // This should be 2^{wdith - 1}
 
    reg  [width-1:0] x, y;
    wire [width*2-1:0] out;
    wire             c_out;
    reg              sel;
    
-   mux_2_top mux(
+   mul mul(
 		         .a        (x), 
 		         .b        (y), 
 		         .sel      (sum), 
@@ -22,11 +22,14 @@ module mux_tb;
    integer          err = 0;
    
    initial begin 
-	  x = 8'b0;
-	  y = 8'b0;
       
-	  for(x_cnt = 0; x_cnt < range; x_cnt = x_cnt+1) begin
-		 for(y_cnt = 0; y_cnt < range; y_cnt = y_cnt+1) begin
+	  for(x_cnt = -range; x_cnt < range; x_cnt = x_cnt+1) begin
+		 for(y_cnt = -range; y_cnt < range; y_cnt = y_cnt+1) begin
+            x[width - 2: 0] = x_cnt[width - 2: 0];
+            y[width - 2: 0] = y_cnt[width - 2: 0];
+            x[width - 1] = (x_cnt < 0)? 1: 0;
+            y[width - 1] = (y_cnt < 0)? 1: 0;
+            
 			#1000
 				     $display("(%2d,%2d) x=%b, y=%b, out=%b", x_cnt, y_cnt, x, y, out);
 			if( out != x * y)
@@ -35,10 +38,7 @@ module mux_tb;
                  err += 1;                 
               end
 			$display("\n");
-			
-			y = y + 8'b1;
 		 end
-		 x = x + 8'b1;
 	  end
 
 	  $display("...finished %d errors\n", err);
