@@ -8,17 +8,11 @@ module sub_top #(
 );
 	
 	// SUB = ADD and NEG
-	
-	wire [width-1:0] neg_b;
-	
-	neg_top neg(
-		.in  (b),
-		.out (neg_b)
-	);
+
 	add_top add(
 		.c_in		 (1'b1),
 		.a			 (a),
-		.b			 (neg_b),
+		.b			 (!b),
 		.out		 (out),
 		.overflow (overflow)
 	);

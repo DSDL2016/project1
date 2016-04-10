@@ -32,7 +32,7 @@ module seg_disp_top #(
     end
 
     function [4*digits-1:0] bcd_asl;
-        input [4*digits-1:0] din;
+        input [4*digits-1:0] bcd_in;
         input newbit;
 
         integer k;
@@ -43,7 +43,7 @@ module seg_disp_top #(
         begin
             c_in = newbit;
             for(k = 0; k < digits; k = k+1) begin
-                digit[3 -: 4] = din[4*k+3 -: 4];
+                digit[3 -: 4] = bcd_in[4*k+3 -: 4];
                 digit_next = digit - 5;
 
                 if(digit > 4'b0100) begin
