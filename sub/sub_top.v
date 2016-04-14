@@ -11,7 +11,7 @@ module sub_top #(
     add_top add(
         .c_in (1'b1),
         .a    (a),
-        .b    (!b),
+        .b    (~b),
         .out  (out),
         .ovf  (ovf)
     );
