@@ -80,8 +80,6 @@ set_location_assignment PIN_N1 -to b[4]
 set_location_assignment PIN_P1 -to b[5]
 set_location_assignment PIN_Y12 -to err
 set_global_assignment -name VERILOG_FILE mul/mul_top.v
-set_global_assignment -name VERILOG_FILE mux/mux_2x1.v
-set_global_assignment -name VERILOG_FILE mux/mux_2_top.v
 set_global_assignment -name VERILOG_FILE add/half_adder.v
 set_global_assignment -name VERILOG_FILE add/full_adder.v
 set_global_assignment -name VERILOG_FILE add/add_top.v

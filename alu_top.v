@@ -6,7 +6,7 @@ module alu_top #(
 	input  [width-1:0] 	b,
 	input  [1:0] 			func,
 	output [2*width-1:0] out,
-	output 					overflow
+	output 					ovf
 );
 	
 	wire add_out, sub_out, mul_out, div_out;
