@@ -32,10 +32,24 @@ module div_top #(
 		r_tmp = 0;
 	end
 	
+	// busy bit and 
 	always @(posedge clk) begin
 	
 	end
+	assign done = !busy;
 	
-	not done_sig(done, busy);
+ P := N
+ D := D << n              * P and D need twice the word width of N and Q
+ for i = n-1..0 do        * for example 31..0 for 32 bits
+   if P >= 0 then
+     q[i] := +1
+     P := 2*P - D
+   else
+     q[i] := -1
+     P := 2*P + D
+   end if
+ end
+ 
+ * Note: N=Numerator, D=Denominator, n=#bits, P=Partial remainder, q(i)=bit #i of quotient.
 	
 endmodule
