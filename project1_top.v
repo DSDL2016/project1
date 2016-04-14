@@ -1,13 +1,12 @@
 module project1_top #(
     parameter width = 6
 )(
-    input	   				clk,
-    input	 [width-1:0]	a,
-    input	 [width-1:0]	b,
-    input  [2:0]			func,
-    output [2*width-1:0]	out,
-    output [6:0]			seg_4, seg_3, seg_2, seg_1,
-    output					err
+    input                clk,
+    input  [width-1:0]   a,
+    input  [width-1:0]   b,
+    input  [2:0]         func,
+    output [2*width-1:0] out,
+    output               err
 );
 
     alu_top alu(
@@ -16,7 +15,7 @@ module project1_top #(
         .b    (b),
         .func (func[1:0]),
         .out  (out),
-        .ovf  (err),
+        .ovf  (err)
     );
 	
 endmodule

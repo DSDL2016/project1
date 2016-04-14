@@ -1,8 +1,8 @@
 module mul_top #(
-	parameter width = 6
+    parameter width = 6
 )(
-	input [width-1:0]      a, b,
-	input                  sel,
+    input      [width-1:0]   a, b,
+    input                    sel,
     output reg [width*2-1:0] out
 );
 

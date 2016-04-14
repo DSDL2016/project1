@@ -36,6 +36,6 @@ module alu_top #(
             2'b11: out = div_out;
         endcase
     end		  
-    assign overflow = add_ovf | sub_ovf;
+    assign ovf = add_ovf | sub_ovf;
 
 endmodule
