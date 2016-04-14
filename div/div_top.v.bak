@@ -9,18 +9,19 @@ module div_top #(
    integer                    highest_bit;
    integer                    i;
    
-   always @(a, b)   
+   
+   always @( a, b )   
      begin         
         divided = a;
         q = 0;
         highest_bit = 0;        
-        for(i = 0; i < width; i = i+1)
+        for( i = 0; i < width; ++i )
           begin
              if( b[i] )
                highest_bit = i;
           end
         
-        for(i = width - 1; i >= highest_bit; i = i-1)
+        for( i = width - 1; i >= highest_bit; --i )
           begin
              if( divided >= (b << (i - highest_bit)) )
                begin
@@ -32,4 +33,6 @@ module div_top #(
         r = divided;        
      end // always @ ( a, b )
 
+>>>>>>> 91c7def9270f82877af9cece03e191b65f0c25a9
+	
 endmodule

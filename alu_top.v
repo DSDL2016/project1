@@ -9,6 +9,7 @@ module alu_top #(
 	output 					overflow
 );
 	
+	wire add_out, sub_out, mul_out, div_out;
 	wire add_ovf, sub_ovf, mul_ovf, div_ovf;
 	
 	add_top add(
@@ -24,7 +25,9 @@ module alu_top #(
 		.out		 (sub_out),
 		.overflow (sub_ovf)
 	);
-	
-	or out_or(overflow, add_ovf, sub_ovf, mul_ovf, div_ovf);
+
+	assign out = (func == 2'b00) ? add_out : 
+					 (func == 2'b01) ? sub_out : 2'bzz;
+	assign overflow = add_ovf | sub_ovf;
 	
 endmodule

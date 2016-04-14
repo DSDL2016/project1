@@ -10,20 +10,16 @@ module project1_top #(
     output					err
 );
 
-	alu_top alu(
-		.clk		 (clk),
-		.a			 (a),
-		.b			 (b),
-		.func		 (func[1:0]),
-		.out		 (out),
+	wire [width-1:0] tmp;
+	
+	add_top add(
+		.c_in  (1'b0),
+		.a  (a),
+		.b  (b),
+		.out (tmp),
 		.overflow (err)
 	);
-
-// DEPRECATED
-//	seg_disp_top a_seg(
-//	    .bin    (a),
-//	    .bcd_1  (seg_3),
-//	    .bcd_10 (seg_4) 
-//	);
+	
+	assign out = {{width{1'b0}}, tmp};
 	
 endmodule
