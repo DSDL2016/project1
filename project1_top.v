@@ -10,16 +10,13 @@ module project1_top #(
     output					err
 );
 
-	wire [width-1:0] tmp;
-	
-	add_top add(
-		.c_in  (1'b0),
-		.a  (a),
-		.b  (b),
-		.out (tmp),
-		.overflow (err)
-	);
-	
-	assign out = {{width{1'b0}}, tmp};
+    alu_top alu(
+        .clk  (clk),
+        .a    (a),
+        .b    (b),
+        .func (func[1:0]),
+        .out  (out),
+        .ovf  (err),
+    );
 	
 endmodule

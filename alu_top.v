@@ -30,8 +30,8 @@ module alu_top #(
 	
     always @(*) begin
         case(func)
-            2'b00: out = add_out;
-            2'b01: out = sub_out;
+            2'b00: out = {{width{1'b0}}, add_out};
+            2'b01: out = {{width{1'b0}}, sub_out};
             2'b10: out = mul_out;
             2'b11: out = div_out;
         endcase
