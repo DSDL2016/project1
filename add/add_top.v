@@ -5,7 +5,7 @@ module add_top #(
 	input		[width-1:0]	a,
 	input		[width-1:0]	b,
 	output	[width-1:0]	out,
-	output					overflow
+	output					ovf
 );
 	
 	// additional bit of carry array is for overflow signal
@@ -27,6 +27,6 @@ module add_top #(
 	
 	// c_in is 1'b0 for ADD
 	assign carry[0] = c_in;
-	assign overflow = carry[width];
+	assign ovf = carry[width];
 	
 endmodule
