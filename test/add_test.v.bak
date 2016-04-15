@@ -20,8 +20,7 @@ module add_test_bench();
   integer test_cin, num_a, num_b, sum;
   initial begin
     // $display("range from %d %d", LOWER, UPPER);
-	 test_cin = 0;
-    //for (test_cin = 0; test_cin <= 1; test_cin = test_cin + 1) begin
+    for (test_cin = 0; test_cin <= 1; test_cin = test_cin + 1) begin
       for (num_a = LOWER; num_a <= UPPER; num_a = num_a + 1) begin
         for (num_b = LOWER; num_b <= UPPER; num_b = num_b + 1) begin
           sum = num_a + num_b;
@@ -61,7 +60,7 @@ module add_test_bench();
 
         end
       end
-    //end  
+    end  
     
   end
 endmodule
