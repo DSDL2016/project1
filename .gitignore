@@ -9,4 +9,11 @@ incremental_db/
 # generated simulations
 simulation/
 
+# vi temp file
 *~
+
+# project setup
+*.qws
+
+# generated backup files
+.bak
