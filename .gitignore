@@ -16,4 +16,4 @@ simulation/
 *.qws
 
 # generated backup files
-.bak
+*.bak
