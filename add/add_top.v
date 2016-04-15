@@ -27,6 +27,6 @@ module add_top #(
 	
 	// c_in is 1'b0 for ADD
 	assign carry[0] = c_in;
-	assign ovf = carry[width];
+	assign ovf = carry[width] ^ carry[width-1];
 	
 endmodule
