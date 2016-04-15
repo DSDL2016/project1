@@ -68,6 +68,7 @@ module add_test_bench();
                 end
             end
         end
+        $display("Test finished.");
     end
 
 endmodule
