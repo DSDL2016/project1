@@ -24,10 +24,11 @@ module add_test_bench();
     // t_* for generated test
     // w_* for wire connections
     // r_* for registers
-    integer t_a, t_b, t_out;
+    integer t_a, t_b, t_out, error_count;
 
     initial begin
         $display("value can range from %d to %d", LOWER, UPPER);
+        error_count = 0;
 
         // default c_in to 0 since it's for ADD
         r_cin = 0;
@@ -49,12 +50,14 @@ module add_test_bench();
                         $display("Test Data  : %3d+ %3d = %3d", t_a, t_b, t_out);
                         $display("Your result: %3d+ %3d = %3d", w_a, w_b, w_out);
                         $display("overflow bit = %b", overflow);
+                        error_count = error_count + 1;
                     end
                     else if (w_out != t_out) begin
                         $display("\nSummation error");
                         $display("Test Data  : %3d+ %3d = %3d", t_a, t_b, t_out);
                         $display("Your result: %3d+ %3d = %3d", w_a, w_b, w_out);
                         $display("overflow bit = %b", overflow);
+                        error_count = error_count + 1;
                     end
                 end
                 else begin
@@ -64,11 +67,12 @@ module add_test_bench();
                         $display("Test Data  : %3d+ %3d = %3d", t_a, t_b, t_out);
                         $display("Your result: %3d+ %3d = %3d", w_a, w_b, w_out);
                         $display("overflow bit = %b", overflow);
+                        error_count = error_count + 1;
                     end
                 end
             end
         end
-        $display("Test finished.");
+        $display("Test finished. Total %d errors.\n", error_count);
     end
 
 endmodule
