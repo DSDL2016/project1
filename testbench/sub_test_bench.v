@@ -13,7 +13,6 @@ module sub_test_bench();
     wire signed [WIDTH-1:0] w_out;
 
     // bond the input to registers
-    assign w_cin = r_cin;
     assign w_a = r_a;
     assign w_b = r_b;
 
@@ -23,10 +22,11 @@ module sub_test_bench();
     // t_* for generated test
     // w_* for wire connections
     // r_* for registers
-    integer t_a, t_b, t_out;
+    integer t_a, t_b, t_out, error_count = 0;
 
     initial begin
         $display("value can range from %d to %d", LOWER, UPPER);
+        error_count = 0;
 
         for (t_a = LOWER; t_a <= UPPER; t_a = t_a+1) begin
             for (t_b = LOWER; t_b <= UPPER; t_b = t_b+1) begin
@@ -45,12 +45,14 @@ module sub_test_bench();
                         $display("Test Data  : %3d- %3d = %3d", t_a, t_b, t_out);
                         $display("Your result: %3d- %3d = %3d", w_a, w_b, w_out);
                         $display("overflow bit = %b", overflow);
+                        error_count = error_count + 1;
                     end
                     else if (w_out != t_out) begin
                         $display("\nSubtraction error");
                         $display("Test Data  : %3d- %3d = %3d", t_a, t_b, t_out);
                         $display("Your result: %3d- %3d = %3d", w_a, w_b, w_out);
                         $display("overflow bit = %b", overflow);
+                        error_count = error_count + 1;
                     end
                 end
                 else begin
@@ -60,11 +62,12 @@ module sub_test_bench();
                         $display("Test Data  : %3d- %3d = %3d", t_a, t_b, t_out);
                         $display("Your result: %3d- %3d = %3d", w_a, w_b, w_out);
                         $display("overflow bit = %b", overflow);
+                        error_count = error_count + 1;
                     end
                 end
             end
         end
-        $display("Test finished.");
+        $display("Test finished. Total %d errors.\n", error_count);
     end
 
 endmodule
