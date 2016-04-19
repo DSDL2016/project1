@@ -11,7 +11,7 @@ module mul_tb;
    wire             c_out;
    reg              sel;
    
-   mul mul(
+   mul_top mul(
 		         .a        (x), 
 		         .b        (y), 
 		         .sel      (sum), 
@@ -23,15 +23,15 @@ module mul_tb;
    
    initial begin 
       
-	  for(x_cnt = -range + 1; x_cnt < range; x_cnt = x_cnt+1) begin
-		 for(y_cnt = -range + 1; y_cnt < range; y_cnt = y_cnt+1) begin
+	  for(x_cnt = -range ; x_cnt < range; x_cnt = x_cnt+1) begin
+		 for(y_cnt = -range ; y_cnt < range; y_cnt = y_cnt+1) begin
             x[width - 2: 0] = x_cnt[width - 2: 0];
             y[width - 2: 0] = y_cnt[width - 2: 0];
             x[width - 1] = (x_cnt < 0)? 1: 0;
             y[width - 1] = (y_cnt < 0)? 1: 0;
             
-			#1000
-				     $display("(%2d,%2d) x=%b, y=%b, out=%b, ans=%b", x_cnt, y_cnt, x, y, out, x_cnt * y_cnt);
+			#1
+			  $display("(%2d,%2d) x=%b, y=%b, out=%b, ans=%b", x_cnt, y_cnt, x, y, out, (x_cnt * y_cnt) & 4095 );
 			if( out != ((x_cnt * y_cnt) & 4095))
               begin
 			     $display(" FAILED");
