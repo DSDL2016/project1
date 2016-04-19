@@ -1,7 +1,7 @@
 `timescale 1 ns/1 ns
 
 
-module mul_tb;
+module mul_test_bench;
 
    localparam width = 6;
    localparam range  = 32; // This should be 2^{wdith - 1}
@@ -29,7 +29,7 @@ module mul_tb;
             x[width - 1] = (x_cnt < 0)? 1: 0;
             y[width - 1] = (y_cnt < 0)? 1: 0;
             
-			#1000
+			#100
 			     reg_out = out;
 				   //$display("------out = %b %d", out, reg_out);
 			if( out != ((x_cnt * y_cnt) & 4095))

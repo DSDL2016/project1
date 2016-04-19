@@ -1,7 +1,7 @@
 `timescale 1 ns/1 ns
 
 
-module div_tb;
+module div_test_bench;
 
    localparam width = 6;
    localparam range  = 32; // This should be 2^{wdith}
