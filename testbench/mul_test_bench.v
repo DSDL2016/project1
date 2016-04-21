@@ -11,7 +11,7 @@ module mul_test_bench;
    wire [width*2-1:0] out;
    wire             c_out;
    
-   mul mul(
+   mul_top mul(
 		         .a        (x), 
 		         .b        (y), 
 		         .out (out)
@@ -30,13 +30,12 @@ module mul_test_bench;
             y[width - 1] = (y_cnt < 0)? 1: 0;
             
 			#100
-			  $display("(%2d,%2d) x=%b, y=%b, out=%b, ans=%b", x_cnt, y_cnt, x, y, out, (x_cnt * y_cnt) & 4095 );
 			     reg_out = out;
 				   //$display("------out = %b %d", out, reg_out);
 			if( out != ((x_cnt * y_cnt) & 4095))
               begin
 			     //$display(" FAILED");
-			     $display("error:(%2d,%2d=%6d) x=%b, y=%b, out=%b, ans=%b", x_cnt, y_cnt, x_cnt * y_cnt, x, y, out, x_cnt * y_cnt);
+			  $display("(%2d,%2d) x=%b, y=%b, out=%b, ans=%b", x_cnt, y_cnt, x, y, out, (x_cnt * y_cnt) & 4095 );
                  err = err + 1;                 
               end
 			//$display("\n");
