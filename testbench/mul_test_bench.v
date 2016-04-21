@@ -1,20 +1,19 @@
 `timescale 1 ns/1 ns
 
 
-module mul_tb;
+module mul_test_bench;
 
    localparam width = 6;
    localparam range  = 32; // This should be 2^{wdith - 1}
 
    reg  [width-1:0] x, y;
+   reg signed [width*2-1:0] reg_out;
    wire [width*2-1:0] out;
    wire             c_out;
-   reg              sel;
    
    mul_top mul(
 		         .a        (x), 
 		         .b        (y), 
-		         .sel      (sum), 
 		         .out (out)
 	             );
 
@@ -30,14 +29,17 @@ module mul_tb;
             x[width - 1] = (x_cnt < 0)? 1: 0;
             y[width - 1] = (y_cnt < 0)? 1: 0;
             
-			#1
+			#100
 			  $display("(%2d,%2d) x=%b, y=%b, out=%b, ans=%b", x_cnt, y_cnt, x, y, out, (x_cnt * y_cnt) & 4095 );
+			     reg_out = out;
+				   //$display("------out = %b %d", out, reg_out);
 			if( out != ((x_cnt * y_cnt) & 4095))
               begin
-			     $display(" FAILED");
-                 err += 1;                 
+			     //$display(" FAILED");
+			     $display("error:(%2d,%2d=%6d) x=%b, y=%b, out=%b, ans=%b", x_cnt, y_cnt, x_cnt * y_cnt, x, y, out, x_cnt * y_cnt);
+                 err = err + 1;                 
               end
-			$display("\n");
+			//$display("\n");
 		 end
 	  end
 
