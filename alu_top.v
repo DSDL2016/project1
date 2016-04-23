@@ -16,6 +16,7 @@ module alu_top #(
     wire add_ovf, sub_ovf, mul_ovf, div_ovf;
 
     add_top add(
+        .c_in (1'b0),
         .a   (a),
         .b   (b),
         .out (add_out),
