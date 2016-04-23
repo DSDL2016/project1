@@ -2,7 +2,6 @@ module mul_top #(
     parameter width = 6
 )(
     input      [width-1:0]   a, b,
-    input                    sel,
     output reg [width*2-1:0] out
 );
 
@@ -40,7 +39,7 @@ module mul_top #(
                end
           end        
 
-        $display( "raw sum = %b\n", sum );
+        //$display( "raw sum = %b\n", sum );
         
         // remove overflow bit
         sum[2 * width - 1] = 0;
