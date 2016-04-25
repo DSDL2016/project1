@@ -2,7 +2,8 @@ module mul_top #(
     parameter width = 6
 )(
     input      [width-1:0]   a, b,
-    output reg [width*2-1:0] out
+    output reg [width*2-1:0] out,
+    output done
 );
 
    integer                 sum = 0;
@@ -12,9 +13,15 @@ module mul_top #(
    integer                 i_b;
    integer                 mask = 31;
                 
+                reg r_done;
    
-   always @( a, b )   
-     begin         
+   initial begin
+   r_done = 1;
+   end
+   
+   always @( a or b)   
+     begin       
+     r_done = 0;
         sum = 0;
         i_a = a[width - 2: 0];           
         i_b = b[width - 2: 0];           
@@ -50,7 +57,10 @@ module mul_top #(
         end
 
         out = sum;        
+         r_done = 1;
          
      end // always @ ( a, b )
+   
+   assign done = r_done;
    
 endmodule
