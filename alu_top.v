@@ -43,7 +43,7 @@ module alu_top #(
 		  .r     (div_out[width-1:0])
 	 );
 	
-    always @(a or b or func) begin
+    always @(add_out or sub_out or mul_out or div_out or add_ovf or sub_ovf) begin
         case(func)
             2'b00: out <= {{width{1'b0}}, add_out};
             2'b01: out <= {{width{1'b0}}, sub_out};
