@@ -22,8 +22,8 @@ module mul_test_bench;
    
    initial begin 
       
-	  for(x_cnt = -range + 1; x_cnt < range; x_cnt = x_cnt+1) begin
-		 for(y_cnt = -range + 1; y_cnt < range; y_cnt = y_cnt+1) begin
+	  for(x_cnt = -range; x_cnt < range; x_cnt = x_cnt+1) begin
+		 for(y_cnt = -range; y_cnt < range; y_cnt = y_cnt+1) begin
             x[width - 2: 0] = x_cnt[width - 2: 0];
             y[width - 2: 0] = y_cnt[width - 2: 0];
             x[width - 1] = (x_cnt < 0)? 1: 0;
