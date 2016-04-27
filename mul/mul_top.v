@@ -1,9 +1,9 @@
 module mul_top #(
-    parameter width = 6
+	parameter width = 6
 )(
-    input      [width-1:0]   a, b,
-    output reg [width*2-1:0] out,
-    output done
+	input [width-1:0]      a, b,
+	input                  sel,
+    output reg [width*2-1:0] out
 );
 
    integer                 sum = 0;
@@ -11,22 +11,18 @@ module mul_top #(
    integer                 sign = 1;
    integer                 i_a;
    integer                 i_b;
-   integer                 mask = 31;
-                
-                reg r_done;
-   
-   initial begin
-   r_done = 1;
-   end
-   
-   always @( a or b)   
-     begin       
-     r_done = 0;
-        sum = 0;
-        i_a = a[width - 2: 0];           
-        i_b = b[width - 2: 0];           
-        sign = 1;        
+   integer                 mask = 63;
 
+   
+   always @( a, b )   
+     begin         
+        sum = 0;
+        i_a = a[width - 1: 0];           
+        i_b = b[width - 1: 0];           
+        sign = 1;        
+        
+        // $display( "i_a = %b, i_b = %b\n", i_a, i_b);
+        
         // extract the number part
         if( a[width - 1] )begin
            sign = -sign;
@@ -37,8 +33,10 @@ module mul_top #(
            sign = -sign;
            i_b = (~i_b + 1) & mask;           
         end
-
-        for(i = 0; i < width - 1; i = i+1)
+        
+        // $display( "i_a = %b, i_b = %b\n", i_a, i_b);
+ 
+        for( i = 0; i < width; ++i )
           begin
              if( i_b[i] )
                begin
@@ -46,7 +44,7 @@ module mul_top #(
                end
           end        
 
-        //$display( "raw sum = %b\n", sum );
+        $display( "i_a = %b, i_b = %b, raw sum = %b\n", i_a, i_b, sum );
         
         // remove overflow bit
         sum[2 * width - 1] = 0;
@@ -56,11 +54,10 @@ module mul_top #(
            sum = ~sum + 1;
         end
 
+        
         out = sum;        
-         r_done = 1;
-         
+        
+        
      end // always @ ( a, b )
-   
-   assign done = r_done;
    
 endmodule
