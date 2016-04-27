@@ -43,8 +43,6 @@ module mul_top #(
                   sum = sum + (i_a << i);
                end
           end        
-
-        $display( "i_a = %b, i_b = %b, raw sum = %b\n", i_a, i_b, sum );
         
         // remove overflow bit
         sum[2 * width - 1] = 0;
