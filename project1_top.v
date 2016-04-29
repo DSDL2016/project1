@@ -30,7 +30,7 @@ module project1_top #(
 		  .done  ()
 	 );
 
-    always @(a or b or func) begin
+    always @(clk or a or b or func) begin
         if(out_sel) begin
 		      // show a/b
 		      out = {a, b};
