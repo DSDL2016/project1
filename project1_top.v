@@ -15,20 +15,20 @@ module project1_top #(
 	 
 	 // using these wires to route 7seg display
 	 // ...starts from HEX0 to HEX7
-	 reg [7*n_segs-1:0] w_segs;
+	 reg [4*n_segs-1:0] w_bcd;
 
 	 always @(*) begin
         if (out_sel) begin
 		      // show a/b
 		      out = {a, b};
-				w_segs = {w_bcd_b1, w_bcd_b10, w_bcd_bsgn, {4{1'b1}}, 
-				          w_bcd_a1, w_bcd_a10, w_bcd_asgn, {4{1'b1}}};
+				w_bcd = {w_bcd_b1, w_bcd_b10, w_bcd_bsgn, {4{1'b1}}, 
+				         w_bcd_a1, w_bcd_a10, w_bcd_asgn, {4{1'b1}}};
 		  end
 		  else begin
 		      // show c
 		      out = result;
-				w_segs = {w_bcd_c1, w_bcd_c10, w_bcd_c100, w_bcd_c1000,
-				          w_bcd_csgn, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}};
+				w_bcd = {w_bcd_c1, w_bcd_c10, w_bcd_c100, w_bcd_c1000,
+				         w_bcd_csgn, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}};
 		  end
     end
 	 
