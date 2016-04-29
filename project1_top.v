@@ -17,18 +17,18 @@ module project1_top #(
 	 // ...starts from HEX0 to HEX7
 	 reg [7*n_segs-1:0] w_segs;
 
-	 always @(a or b or func) begin
+	 always @(*) begin
         if (out_sel) begin
 		      // show a/b
 		      out = {a, b};
-				w_segs = {w_bcd_b1, w_bcd_b10, w_bcd_bsgn, {7{1'b1}}, 
-				          w_bcd_a1, w_bcd_a10, w_bcd_asgn, {7{1'b1}}};
+				w_segs = {w_bcd_b1, w_bcd_b10, w_bcd_bsgn, {4{1'b1}}, 
+				          w_bcd_a1, w_bcd_a10, w_bcd_asgn, {4{1'b1}}};
 		  end
 		  else begin
 		      // show c
 		      out = result;
 				w_segs = {w_bcd_c1, w_bcd_c10, w_bcd_c100, w_bcd_c1000,
-				          w_bcd_csgn, {3*7{1'b1}}};
+				          w_bcd_csgn, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}};
 		  end
     end
 	 
@@ -75,7 +75,7 @@ module project1_top #(
 	 generate
 	     for (i = 0; i < n_segs; i = i+1) begin : BCD2SEG_CONCAT
 		      bcd2seg conv_seg(
-				    .bcd (w_segs[(n_segs-i)*7-1 -: 7]),
+				    .bcd (w_bcd[(n_segs-i)*4-1 -: 4]),
 					 .seg (segs[i*7 +: 7])
 				);
 		  end
