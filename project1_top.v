@@ -28,7 +28,7 @@ module project1_top #(
 	 );
 
     always @(a or b or func) begin
-        if(out_sel) begin
+        if (out_sel) begin
 		      // show a/b
 		      out = {a, b};
 				
