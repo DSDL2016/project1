@@ -92,7 +92,6 @@ set_global_assignment -name VERILOG_FILE project1_top.v
 set_global_assignment -name VERILOG_FILE div/div_top.v
 set_global_assignment -name VERILOG_FILE sub/sub_top.v
 set_global_assignment -name VERILOG_FILE alu_top.v
-set_global_assignment -name VERILOG_FILE disp/seg_disp_top.v
 set_location_assignment PIN_N25 -to func[0]
 set_location_assignment PIN_N26 -to func[1]
 set_location_assignment PIN_P25 -to func[2]

@@ -4,7 +4,7 @@ module bin2bcd #(
 )(
     input      [width-1:0]     bin,
     output reg [bcd_width-1:0] bcd,
-    output reg                 bcd_sgn
+    output reg [3:0]           bcd_sgn
 );
 
     localparam bcd_width = digits*4;

@@ -15,7 +15,7 @@ module project1_top #(
 	 
 	 // using these wires to route 7seg display
 	 // ...starts from HEX0 to HEX7
-	 wire [7*n_segs-1:0] w_segs;
+	 reg [7*n_segs-1:0] w_segs;
 
 	 always @(a or b or func) begin
         if (out_sel) begin
