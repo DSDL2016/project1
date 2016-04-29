@@ -16,6 +16,7 @@ module project1_top #(
 	 // using these wires to route 7seg display
 	 // ...starts from HEX0 to HEX7
 	 reg [4*n_segs-1:0] w_bcd;
+	 wire [0:7*n_segs-1] w_segs;
 
 	 always @(*) begin
         if (out_sel) begin
@@ -76,10 +77,11 @@ module project1_top #(
 	     for (i = 0; i < n_segs; i = i+1) begin : BCD2SEG_CONCAT
 		      bcd2seg conv_seg(
 				    .bcd (w_bcd[(n_segs-i)*4-1 -: 4]),
-					 .seg (segs[i*7 +: 7])
+					 .seg (w_segs[i*7 +: 7])
 				);
 		  end
 	 endgenerate
 	 
+	 assign segs = ~w_segs;
 	 	 
 endmodule
