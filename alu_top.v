@@ -1,7 +1,6 @@
 module alu_top #(
     parameter width = 6
 )(
-    input                    clk,
     input      [width-1:0]   a,
     input      [width-1:0]   b,
     input      [1:0]         func,
@@ -13,7 +12,7 @@ module alu_top #(
     wire [width-1:0]   add_out, sub_out;
 	 wire [2*width-1:0] mul_out, div_out;
     // wires for overflow signals
-    wire add_ovf, sub_ovf, mul_ovf, div_ovf;
+    wire add_ovf, sub_ovf;
 
     add_top add(
         .c_in (1'b0),
