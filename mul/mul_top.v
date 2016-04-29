@@ -36,7 +36,7 @@ module mul_top #(
         
         // $display( "i_a = %b, i_b = %b\n", i_a, i_b);
  
-        for( i = 0; i < width; ++i )
+        for( i = 0; i < width; i = i+1 )
           begin
              if( i_b[i] )
                begin
