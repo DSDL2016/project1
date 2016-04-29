@@ -84,7 +84,6 @@ set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH "MUL test bench
 set_global_assignment -name EDA_TEST_BENCH_NAME "ADD test bench" -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id "ADD test bench"
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME add_test_bench -section_id "ADD test bench"
-set_global_assignment -name VERILOG_FILE test/add_test.v
 set_global_assignment -name VERILOG_FILE mul/mul_top.v
 set_global_assignment -name VERILOG_FILE add/half_adder.v
 set_global_assignment -name VERILOG_FILE add/full_adder.v
