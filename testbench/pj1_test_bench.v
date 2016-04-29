@@ -1,5 +1,11 @@
 module pj1_test_bench();
 
+    add_test_bench add_tb();
+    sub_test_bench sub_tb();
+    mul_test_bench mul_tb();
+    div_test_bench div_tb();
+    alu_test_bench alu_tb();
+
     parameter WIDTH = 6;
 
     // 6-bit sign interger range
@@ -59,7 +65,7 @@ module pj1_test_bench();
               $display("overflow bit = %b", overflow);
               error_count = error_count + 1;
             end
-/*
+
             func = 2'b01; // sub
               #1000
               clk = ~clk;
@@ -129,10 +135,10 @@ module pj1_test_bench();
                 error_count = error_count + 1;
               end
             end
-*/
+
           end
         end
 
-        $display("Test finished. Total %d errors.\n", error_count);
+        $display("Project 1 top testbench finished. Total %d errors.\n", error_count);
     end
 endmodule

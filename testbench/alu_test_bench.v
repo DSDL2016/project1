@@ -13,7 +13,6 @@ module alu_test_bench();
 
     wire clock; // clock in alu_top is useless
     alu_top alu(clock, a, b, func, out, overflow);
-
     integer test_out, error_count, test_quotient, test_remainder;
 
     reg [2 * WIDTH - 1: 0] mul_ans;
@@ -21,7 +20,6 @@ module alu_test_bench();
 
     integer i, j;
     initial begin
-        $display("value can range from %d to %d", LOWER, UPPER);
         error_count = 0;
 
         for (i = LOWER; i <= UPPER; i = i + 1) begin
@@ -116,7 +114,7 @@ module alu_test_bench();
           end
         end
 
-        $display("Test finished. Total %d errors.\n", error_count);
+        $display("ALU unit test finished. Total %d errors.\n", error_count);
     end
 	
 endmodule

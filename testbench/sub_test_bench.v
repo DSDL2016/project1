@@ -25,7 +25,6 @@ module sub_test_bench();
     integer t_a, t_b, t_out, error_count = 0;
 
     initial begin
-        $display("value can range from %d to %d", LOWER, UPPER);
         error_count = 0;
 
         for (t_a = LOWER; t_a <= UPPER; t_a = t_a+1) begin
@@ -67,7 +66,7 @@ module sub_test_bench();
                 end
             end
         end
-        $display("Test finished. Total %d errors.\n", error_count);
+        $display("SUB unit test finished. Total %d errors.\n", error_count);
     end
 
 endmodule

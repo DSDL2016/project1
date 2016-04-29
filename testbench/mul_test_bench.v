@@ -42,7 +42,7 @@ module mul_test_bench;
 		 end
 	  end
 
-	  $display("...finished %d errors\n", err);
+    $display("MUL unit test finished. Total %d errors.\n", err);
    end
 
 endmodule

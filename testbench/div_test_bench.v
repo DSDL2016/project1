@@ -23,7 +23,6 @@ module div_test_bench;
 		x = 8'b0;
 		y = 8'b0;
 
-    $display("test range from %2d to %2d", 0, range);
 		for (x_cnt = 0; x_cnt < range; x_cnt = x_cnt+1) begin
 			x = x_cnt;
 			for (y_cnt = 1; y_cnt < range; y_cnt = y_cnt+1) begin
@@ -37,7 +36,7 @@ module div_test_bench;
 			end
 		end
 
-		$display("...finished, %d errors\n", err);
+    $display("DIV unit test finished. Total %d errors.\n", err);
 	end
 
 endmodule

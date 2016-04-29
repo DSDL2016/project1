@@ -27,7 +27,6 @@ module add_test_bench();
     integer t_a, t_b, t_out, error_count;
 
     initial begin
-        $display("value can range from %d to %d", LOWER, UPPER);
         error_count = 0;
 
         // default c_in to 0 since it's for ADD
@@ -72,7 +71,7 @@ module add_test_bench();
                 end
             end
         end
-        $display("Test finished. Total %d errors.\n", error_count);
+        $display("ADD unit test finished. Total %d errors.\n", error_count);
     end
 
 endmodule
