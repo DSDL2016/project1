@@ -10,6 +10,9 @@ module seg_disp_top #(
     reg [width-1:0] r_bin;
 	 reg [3:0]       r_sgn;
 	 
+	 wire [3:0] w_bcd1, w_bcd10;
+    wire [6:0] w_seg1, w_seg10, w_segsgn;
+	 
 	 initial begin
 	     r_bin = bin;
 	 end
@@ -30,5 +33,7 @@ module seg_disp_top #(
 		  .digits (digits)
 	 )(
 	 );
+	 
+	 assign 
 	 
 endmodule
