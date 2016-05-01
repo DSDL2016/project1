@@ -7,6 +7,7 @@ module pj1_test_bench();
     alu_test_bench alu_tb();
 
     parameter WIDTH = 6;
+	  parameter N_SEGS = 8;
 
     // 6-bit sign interger range
     parameter LOWER = -(1 << (WIDTH - 1));
@@ -15,11 +16,11 @@ module pj1_test_bench();
     reg signed [WIDTH - 1:0] a, b;
     reg        [1:0]         func;
     wire      [2 * WIDTH - 1:0] out;
+    wire     [0:7*N_SEGS-1] segs;
     wire                    overflow;
-    wire     [6:0]         seg_a_1, seg_a_10, seg_b_1, seg_b_10;
     wire err;
-    reg choose, clk;
-    project1_top pj(clk, a, b, {choose, func}, out, seg_a_1, seg_a_10, seg_b_1, seg_b_10, overflow);
+    reg choose;
+    project1_top pj1(a, b, {choose, func}, out, segs, overflow);
 
     integer test_out, error_count, test_quotient, test_remainder;
 
@@ -28,7 +29,6 @@ module pj1_test_bench();
 
     integer i, j;
     initial begin
-        clk = 0;
         error_count = 0;
 
         for (i = LOWER; i <= UPPER; i = i + 1) begin
@@ -36,10 +36,6 @@ module pj1_test_bench();
             a = i[WIDTH - 1: 0];
             b = j[WIDTH - 1: 0];
             func = 2'b00; // add
-              #1000
-              clk = ~clk;
-              #1000
-              clk = ~clk; 
               #1000
             test_out = i + j;
             add_ans = test_out[WIDTH - 1: 0];
@@ -67,10 +63,6 @@ module pj1_test_bench();
             end
 
             func = 2'b01; // sub
-              #1000
-              clk = ~clk;
-              #1000
-              clk = ~clk; 
               #1000
             test_out = i - j;
             sub_ans = test_out[WIDTH - 1: 0];
@@ -100,10 +92,6 @@ module pj1_test_bench();
 
             func = 2'b10; // mul
               #1000
-              clk = ~clk;
-              #1000
-              clk = ~clk; 
-              #1000
             test_out = i * j;
             mul_ans = test_out[2*WIDTH - 1: 0];
             if (mul_ans != out) begin
@@ -115,10 +103,6 @@ module pj1_test_bench();
 
             if (i >= 0 && j > 0) begin
               func = 2'b11; // div
-              #1000
-              clk = ~clk;
-              #1000
-              clk = ~clk; 
               #1000
               test_quotient = i / j;
               div_quotient_ans = test_quotient[WIDTH - 1: 0];
