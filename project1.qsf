@@ -53,7 +53,6 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name EDA_TIME_SCALE "1 ns" -section_id eda_simulation
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
-set_location_assignment PIN_N2 -to clk
 set_location_assignment PIN_AD21 -to out[0]
 set_location_assignment PIN_AC21 -to out[1]
 set_location_assignment PIN_Y13 -to out[3]
@@ -84,7 +83,6 @@ set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH "MUL test bench
 set_global_assignment -name EDA_TEST_BENCH_NAME "ADD test bench" -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id "ADD test bench"
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME add_test_bench -section_id "ADD test bench"
-set_global_assignment -name VERILOG_FILE test/add_test.v
 set_global_assignment -name VERILOG_FILE mul/mul_top.v
 set_global_assignment -name VERILOG_FILE add/half_adder.v
 set_global_assignment -name VERILOG_FILE add/full_adder.v
@@ -93,8 +91,6 @@ set_global_assignment -name VERILOG_FILE project1_top.v
 set_global_assignment -name VERILOG_FILE div/div_top.v
 set_global_assignment -name VERILOG_FILE sub/sub_top.v
 set_global_assignment -name VERILOG_FILE alu_top.v
-set_global_assignment -name VERILOG_FILE disp/seg_disp_top.v
-set_global_assignment -name VERILOG_FILE disp/add_3.v
 set_location_assignment PIN_N25 -to func[0]
 set_location_assignment PIN_N26 -to func[1]
 set_location_assignment PIN_P25 -to func[2]
@@ -114,4 +110,62 @@ set_global_assignment -name EDA_TEST_BENCH_FILE testbench/add_test_bench.v -sect
 set_global_assignment -name EDA_TEST_BENCH_FILE testbench/sub_test_bench.v -section_id "SUB test bench"
 set_global_assignment -name EDA_TEST_BENCH_FILE testbench/mul_test_bench.v -section_id "MUL test bench"
 set_global_assignment -name EDA_TEST_BENCH_FILE testbench/div_test_bench.v -section_id "DIV test bench"
+set_global_assignment -name VERILOG_FILE disp/bin2bcd.v
+set_global_assignment -name VERILOG_FILE disp/bcd2seg.v
+set_location_assignment PIN_AF10 -to segs[0]
+set_location_assignment PIN_AB12 -to segs[1]
+set_location_assignment PIN_AC12 -to segs[2]
+set_location_assignment PIN_AD11 -to segs[3]
+set_location_assignment PIN_AE11 -to segs[4]
+set_location_assignment PIN_V14 -to segs[5]
+set_location_assignment PIN_V13 -to segs[6]
+set_location_assignment PIN_V20 -to segs[7]
+set_location_assignment PIN_V21 -to segs[8]
+set_location_assignment PIN_W21 -to segs[9]
+set_location_assignment PIN_Y22 -to segs[10]
+set_location_assignment PIN_AA24 -to segs[11]
+set_location_assignment PIN_AA23 -to segs[12]
+set_location_assignment PIN_AB24 -to segs[13]
+set_location_assignment PIN_AB23 -to segs[14]
+set_location_assignment PIN_V22 -to segs[15]
+set_location_assignment PIN_AC25 -to segs[16]
+set_location_assignment PIN_AC26 -to segs[17]
+set_location_assignment PIN_AB26 -to segs[18]
+set_location_assignment PIN_AB25 -to segs[19]
+set_location_assignment PIN_Y24 -to segs[20]
+set_location_assignment PIN_Y23 -to segs[21]
+set_location_assignment PIN_AA25 -to segs[22]
+set_location_assignment PIN_AA26 -to segs[23]
+set_location_assignment PIN_Y26 -to segs[24]
+set_location_assignment PIN_Y25 -to segs[25]
+set_location_assignment PIN_U22 -to segs[26]
+set_location_assignment PIN_U9 -to segs[28]
+set_location_assignment PIN_U1 -to segs[29]
+set_location_assignment PIN_U2 -to segs[30]
+set_location_assignment PIN_T4 -to segs[31]
+set_location_assignment PIN_R7 -to segs[32]
+set_location_assignment PIN_R6 -to segs[33]
+set_location_assignment PIN_T3 -to segs[34]
+set_location_assignment PIN_T2 -to segs[35]
+set_location_assignment PIN_P6 -to segs[36]
+set_location_assignment PIN_P7 -to segs[37]
+set_location_assignment PIN_T9 -to segs[38]
+set_location_assignment PIN_R5 -to segs[39]
+set_location_assignment PIN_R4 -to segs[40]
+set_location_assignment PIN_R3 -to segs[41]
+set_location_assignment PIN_R2 -to segs[42]
+set_location_assignment PIN_P4 -to segs[43]
+set_location_assignment PIN_P3 -to segs[44]
+set_location_assignment PIN_M2 -to segs[45]
+set_location_assignment PIN_M3 -to segs[46]
+set_location_assignment PIN_M5 -to segs[47]
+set_location_assignment PIN_M4 -to segs[48]
+set_location_assignment PIN_L3 -to segs[49]
+set_location_assignment PIN_L2 -to segs[50]
+set_location_assignment PIN_L9 -to segs[51]
+set_location_assignment PIN_L6 -to segs[52]
+set_location_assignment PIN_L7 -to segs[53]
+set_location_assignment PIN_P9 -to segs[54]
+set_location_assignment PIN_N9 -to segs[55]
+set_location_assignment PIN_W24 -to segs[27]
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
