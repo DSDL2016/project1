@@ -11,8 +11,7 @@ module alu_test_bench();
     wire      [2 * WIDTH - 1:0] out;
     wire                    overflow;
 
-    wire clock; // clock in alu_top is useless
-    alu_top alu(clock, a, b, func, out, overflow);
+    alu_top alu(a, b, func, out, overflow);
     integer test_out, error_count, test_quotient, test_remainder;
 
     reg [2 * WIDTH - 1: 0] mul_ans;
