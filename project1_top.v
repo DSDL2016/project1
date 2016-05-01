@@ -64,7 +64,7 @@ module project1_top #(
 		  .width  (2*width),
 		  .digits (4)
 	 ) conv_c (
-	     .bin     (c),
+	     .bin     (result),
 		  .bcd     ({w_bcd_c1000, w_bcd_c100, w_bcd_c10, w_bcd_c1}),
 		  .bcd_sgn (w_bcd_csgn)
 	 );
