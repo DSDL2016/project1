@@ -1,8 +1,8 @@
 module bin2bcd #(
     parameter width = 6,
-    parameter digits = 2,
-	 parameter abs_val = 1
+    parameter digits = 2
 )(
+    input                      sgn,
     input      [width-1:0]     bin,
     output reg [bcd_width-1:0] bcd,
     output reg [3:0]           bcd_sgn
@@ -15,7 +15,7 @@ module bin2bcd #(
     reg [width-1:0] r_bin;
     always @(bin) begin
 	     // turn the input to absolute value
-		  if (bin[width-1] && abs_val) begin
+		  if (bin[width-1] && sgn) begin
             r_bin = -bin;
             bcd_sgn = 4'b1010;
         end
