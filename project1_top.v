@@ -20,15 +20,15 @@ module project1_top #(
 	 wire [0:7*n_segs-1] w_segs;
 
 	 always @(*) begin
+	     // show a/b when out_sel is 1
+		  leds = (out_sel) ? {a, b} : results;
+		  
+		  // show separate digits when out_sel is 1 or in divide mode
         if (out_sel || mod_sel == 2'b11) begin
-		      // show a/b when output choose to 1 or it's divide mode
-		      leds = {a, b};
 				w_bcd = {w_bcd_b1, w_bcd_b10, w_bcd_bsgn, {4{1'b1}}, 
 				         w_bcd_a1, w_bcd_a10, w_bcd_asgn, {4{1'b1}}};
 		  end
 		  else begin
-		      // show c
-		      leds = results;
 				w_bcd = {w_bcd_c1, w_bcd_c10, w_bcd_c100, w_bcd_c1000,
 				         w_bcd_csgn, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}};
 		  end
