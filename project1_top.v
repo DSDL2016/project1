@@ -34,13 +34,22 @@ module project1_top #(
 	 wire [3:0] w_bcd_r1, w_bcd_r10, w_bcd_rsgn;
 	 wire [3:0] w_bcd_c1, w_bcd_c10, w_bcd_c100, w_bcd_c1000, w_bcd_csgn;
 	 
+	 reg r_sgn;
+	 
+	 // select signed or unsigned
+	 always @(mod_sel) begin
+	     r_sgn = (mod_sel == 2'b11) ? 0 : 1;
+	 end
+	 
 	 bin2bcd conv_a(
+	     .sgn     (r_sgn),
 	     .bin     (a),
 		  .bcd     ({w_bcd_a10, w_bcd_a1}),
 		  .bcd_sgn (w_bcd_asgn)
 	 );
 	 
 	 bin2bcd conv_b(
+	     .sgn     (r_sgn),
 	     .bin     (b),
 		  .bcd     ({w_bcd_b10, w_bcd_b1}),
 		  .bcd_sgn (w_bcd_bsgn)
@@ -50,22 +59,21 @@ module project1_top #(
 		  .width  (2*width),
 		  .digits (4)
 	 ) conv_c(
+	     .sgn     (1),
 	     .bin     (results),
 		  .bcd     ({w_bcd_c1000, w_bcd_c100, w_bcd_c10, w_bcd_c1}),
 		  .bcd_sgn (w_bcd_csgn)
 	 );
 	 
-	 bin2bcd #(
-	     .abs_val (0)
-	 ) conv_q(
+	 bin2bcd conv_q(
+	     .sgn     (0),
 		  .bin     (results[2*width-1:width]),
 		  .bcd     ({w_bcd_q10, w_bcd_q1}),
 		  .bcd_sgn (w_bcd_qsgn)
 	 );
 	 
-	 bin2bcd #(
-	     .abs_val (0)
-	 ) conv_r(
+	 bin2bcd conv_r(
+	     .sgn     (0),
 		  .bin     (results[width-1:0]),
 		  .bcd     ({w_bcd_r10, w_bcd_r1}),
 		  .bcd_sgn (w_bcd_rsgn)
@@ -95,7 +103,7 @@ module project1_top #(
 								 w_bcd_q1, w_bcd_q10, w_bcd_qsgn, {4{1'b1}}};
 				end
 				else begin
-					 r_bcd = {w_bcd_c1, w_bcd_c10, w_bcd_c100, w_bcd_c1000,
+				    r_bcd = {w_bcd_c1, w_bcd_c10, w_bcd_c100, w_bcd_c1000,
 								 w_bcd_csgn, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}};
 				end
 		  end
