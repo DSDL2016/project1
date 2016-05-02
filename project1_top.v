@@ -32,7 +32,8 @@ module project1_top #(
 	 wire [3:0] w_bcd_b1, w_bcd_b10, w_bcd_bsgn;
 	 wire [3:0] w_bcd_q1, w_bcd_q10, w_bcd_qsgn;
 	 wire [3:0] w_bcd_r1, w_bcd_r10, w_bcd_rsgn;
-	 wire [3:0] w_bcd_c1, w_bcd_c10, w_bcd_c100, w_bcd_c1000, w_bcd_csgn;
+	 wire [3:0] w_bcd_c121, w_bcd_c1210, w_bcd_c12100, w_bcd_c121000, w_bcd_c12sgn;
+	 wire [3:0] w_bcd_c61, w_bcd_c610, w_bcd_c6100, w_bcd_c61000, w_bcd_c6sgn;
 	 
 	 reg r_sgn;
 	 
@@ -58,11 +59,18 @@ module project1_top #(
 	 bin2bcd #(
 		  .width  (2*width),
 		  .digits (4)
-	 ) conv_c(
+	 ) conv_c12(
 	     .sgn     (1),
 	     .bin     (results),
-		  .bcd     ({w_bcd_c1000, w_bcd_c100, w_bcd_c10, w_bcd_c1}),
-		  .bcd_sgn (w_bcd_csgn)
+		  .bcd     ({w_bcd_c121000, w_bcd_c12100, w_bcd_c1210, w_bcd_c121}),
+		  .bcd_sgn (w_bcd_c12sgn)
+	 );
+	 
+	 bin2bcd conv_c6(
+	     .sgn     (1),
+	     .bin     (results),
+		  .bcd     ({w_bcd_c61000, w_bcd_c6100, w_bcd_c610, w_bcd_c61}),
+		  .bcd_sgn (w_bcd_c6sgn)
 	 );
 	 
 	 bin2bcd conv_q(
@@ -102,14 +110,16 @@ module project1_top #(
 					 r_bcd = {w_bcd_r1, w_bcd_r10, w_bcd_rsgn, {4{1'b1}},
 								 w_bcd_q1, w_bcd_q10, w_bcd_qsgn, {4{1'b1}}};
 				end
+				else if (mod_sel == 2'b10) begin
+				    r_bcd = {w_bcd_c121, w_bcd_c1210, w_bcd_c12100, w_bcd_c121000,
+								 w_bcd_c12sgn, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}};
+				end
 				else begin
-				    r_bcd = {w_bcd_c1, w_bcd_c10, w_bcd_c100, w_bcd_c1000,
-								 w_bcd_csgn, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}};
+				    r_bcd = {w_bcd_c61, w_bcd_c610, w_bcd_c6100, w_bcd_c61000,
+								 w_bcd_c6sgn, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}};
 				end
 		  end
     end
-	 
-	 // re-route quotion and remainder signal
 	 
 	 //
 	 // bcd2seg

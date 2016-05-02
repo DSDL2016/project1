@@ -13,7 +13,7 @@ module bin2bcd #(
 
     // implement the double-dabble algorithm
     reg [width-1:0] r_bin;
-    always @(bin) begin
+    always @(*) begin
 	     // turn the input to absolute value
 		  if (bin[width-1] && sgn) begin
             r_bin = -bin;
