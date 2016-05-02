@@ -55,13 +55,17 @@ module project1_top #(
 		  .bcd_sgn (w_bcd_csgn)
 	 );
 	 
-	 bin2bcd conv_q(
+	 bin2bcd #(
+	     .abs_val (0)
+	 ) conv_q(
 		  .bin     (results[2*width-1:width]),
 		  .bcd     ({w_bcd_q10, w_bcd_q1}),
 		  .bcd_sgn (w_bcd_qsgn)
 	 );
 	 
-	 bin2bcd conv_r(
+	 bin2bcd #(
+	     .abs_val (0)
+	 ) conv_r(
 		  .bin     (results[width-1:0]),
 		  .bcd     ({w_bcd_r10, w_bcd_r1}),
 		  .bcd_sgn (w_bcd_rsgn)
