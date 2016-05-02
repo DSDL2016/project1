@@ -14,17 +14,15 @@ module bin2bcd #(
     // implement the double-dabble algorithm
     reg [width-1:0] r_bin;
     always @(bin) begin
-	     if (abs_val) begin
-            // turn the input to absolute value
-			   if (bin[width-1]) begin
-                r_bin = -bin;
-                bcd_sgn = 4'b1010;
-            end
-            else begin
-                r_bin = bin;
-                bcd_sgn = 4'b1111;
-            end
-		  end
+	     // turn the input to absolute value
+		  if (bin[width-1] && abs_val) begin
+            r_bin = -bin;
+            bcd_sgn = 4'b1010;
+        end
+        else begin
+            r_bin = bin;
+            bcd_sgn = 4'b1111;
+        end
 
         // initialize bcd register to 0
         bcd = 0;
