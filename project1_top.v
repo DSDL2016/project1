@@ -5,7 +5,7 @@ module project1_top #(
     input      [width-1:0]    a,
     input      [width-1:0]    b,
     input      [2:0]          func,
-    output     [2*width-1:0]  leds,
+    output reg [2*width-1:0]  leds,
     output     [0:7*n_segs-1] segs,
     output                    err
 );
@@ -40,7 +40,7 @@ module project1_top #(
         .a    (a),
         .b    (b),
         .func (func[1:0]),
-        .out  (result),
+        .out  (results),
         .ovf  (err)
     );
 	 
@@ -64,7 +64,7 @@ module project1_top #(
 		  .width  (2*width),
 		  .digits (4)
 	 ) conv_c (
-	     .bin     (result),
+	     .bin     (results),
 		  .bcd     ({w_bcd_c1000, w_bcd_c100, w_bcd_c10, w_bcd_c1}),
 		  .bcd_sgn (w_bcd_csgn)
 	 );
