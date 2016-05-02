@@ -11,6 +11,7 @@ module project1_top #(
 );
 
     wire               out_sel = func[2];
+	 wire [1:0]         mod_sel = func[1:0];
 	 wire [2*width-1:0] results;
 	 
 	 // using these wires to route 7seg display
@@ -19,8 +20,8 @@ module project1_top #(
 	 wire [0:7*n_segs-1] w_segs;
 
 	 always @(*) begin
-        if (out_sel) begin
-		      // show a/b
+        if (out_sel || mod_sel == 2'b11) begin
+		      // show a/b when output choose to 1 or it's divide mode
 		      leds = {a, b};
 				w_bcd = {w_bcd_b1, w_bcd_b10, w_bcd_bsgn, {4{1'b1}}, 
 				         w_bcd_a1, w_bcd_a10, w_bcd_asgn, {4{1'b1}}};
@@ -39,7 +40,7 @@ module project1_top #(
     alu_top alu(
         .a    (a),
         .b    (b),
-        .func (func[1:0]),
+        .func (mod_sel),
         .out  (results),
         .ovf  (err)
     );
