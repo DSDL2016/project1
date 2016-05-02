@@ -87,7 +87,7 @@ module project1_top #(
 				
 		      if (mod_sel == 2'b11) begin
 				    // divide mode
-					 r_bcd = {w_bcd_r1, w_bcd_r10, w_bcd_rsgn, {4'b{1'b1}},
+					 r_bcd = {w_bcd_r1, w_bcd_r10, w_bcd_rsgn, {4{1'b1}},
 								 w_bcd_q1, w_bcd_q10, w_bcd_qsgn, {4{1'b1}}};
 				end
 				else begin
