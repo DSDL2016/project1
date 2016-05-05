@@ -2,7 +2,8 @@ module div_top #(
 	parameter width = 6
 )(
 	input		  [width-1:0] a, b,
-	output reg [width-1:0] q, r
+	output reg [width-1:0] q, r,
+	output                 ovf
 );
 
    integer                    divided;
@@ -10,7 +11,7 @@ module div_top #(
    integer                    i;
    
    always @(a, b)   
-     begin         
+     begin     
         divided = a;
         q = 0;
         highest_bit = 0;        
@@ -29,7 +30,9 @@ module div_top #(
                   
                end
           end        
-        r = divided;        
+        r = divided;   
      end // always @ ( a, b )
 
+	  assign ovf = (b == 0);
+	  
 endmodule

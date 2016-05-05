@@ -12,7 +12,7 @@ module alu_top #(
     wire [width-1:0]   add_out, sub_out;
     wire [2*width-1:0] mul_out, div_out;
     // wires for overflow signals
-    wire add_ovf, sub_ovf;
+    wire add_ovf, sub_ovf, div_ovf;
 
     add_top add(
         .c_in (1'b0),
@@ -39,14 +39,16 @@ module alu_top #(
         .a     (a),
         .b     (b),
         .q     (div_out[2*width-1:width]),
-        .r     (div_out[width-1:0])
+        .r     (div_out[width-1:0]),
+		  .ovf   (div_ovf)
     );
 
     always @(a or b or func or add_out or sub_out or mul_out or div_out or add_ovf or sub_ovf) begin
         case(func)
             2'b00: ovf <= add_ovf; 
             2'b01: ovf <= sub_ovf;
-            2'b10, 2'b11: ovf <= 0;
+            2'b10: ovf <= 0;
+				2'b11: ovf <= div_ovf;
         endcase
         case(func)
             2'b00: out <= {{width{1'b0}}, add_out};
