@@ -68,8 +68,8 @@ module project1_top #(
 	 
 	 bin2bcd conv_c6(
 	     .sgn     (1'b1),
-	     .bin     (results),
-		  .bcd     ({w_bcd_c61000, w_bcd_c6100, w_bcd_c610, w_bcd_c61}),
+	     .bin     (results[width-1:0]),
+		  .bcd     ({w_bcd_c610, w_bcd_c61}),
 		  .bcd_sgn (w_bcd_c6sgn)
 	 );
 	 
@@ -121,8 +121,7 @@ module project1_top #(
 									 w_bcd_c12sgn, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}};
 					end
 					else begin
-						 r_bcd = {w_bcd_c61, w_bcd_c610, w_bcd_c6100, w_bcd_c61000,
-									 w_bcd_c6sgn, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}};
+						 r_bcd = {w_bcd_c61, w_bcd_c610, w_bcd_c6sgn, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}};
 					end
 			  end
 		  end
