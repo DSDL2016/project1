@@ -96,28 +96,35 @@ module project1_top #(
 	 // display selection
 	 //
 	 always @(*) begin
-	     if (out_sel) begin
-		      leds = {a, b};
-				
-				r_bcd = {w_bcd_b1, w_bcd_b10, w_bcd_bsgn, {4{1'b1}}, 
-				         w_bcd_a1, w_bcd_a10, w_bcd_asgn, {4{1'b1}}};
+		  if (err) begin
+				leds = {2*width{1'b0}};
+				r_bcd = {{4{1'b1}}, 4'b1100, 4'b1101, 4'b1100, 
+							4'b1100, 4'b1011, {4{1'b1}}, {4{1'b1}}};
 		  end
 		  else begin
-		      leds = results;
-				
-		      if (mod_sel == 2'b11) begin
-				    // divide mode
-					 r_bcd = {w_bcd_r1, w_bcd_r10, w_bcd_rsgn, {4{1'b1}},
-								 w_bcd_q1, w_bcd_q10, w_bcd_qsgn, {4{1'b1}}};
-				end
-				else if (mod_sel == 2'b10) begin
-				    r_bcd = {w_bcd_c121, w_bcd_c1210, w_bcd_c12100, w_bcd_c121000,
-								 w_bcd_c12sgn, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}};
-				end
-				else begin
-				    r_bcd = {w_bcd_c61, w_bcd_c610, w_bcd_c6100, w_bcd_c61000,
-								 w_bcd_c6sgn, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}};
-				end
+			  if (out_sel) begin
+					leds = {a, b};
+					
+					r_bcd = {w_bcd_b1, w_bcd_b10, w_bcd_bsgn, {4{1'b1}}, 
+								w_bcd_a1, w_bcd_a10, w_bcd_asgn, {4{1'b1}}};
+			  end
+			  else begin
+					leds = results;
+					
+					if (mod_sel == 2'b11) begin
+						 // divide mode
+						 r_bcd = {w_bcd_r1, w_bcd_r10, w_bcd_rsgn, {4{1'b1}},
+									 w_bcd_q1, w_bcd_q10, w_bcd_qsgn, {4{1'b1}}};
+					end
+					else if (mod_sel == 2'b10) begin
+						 r_bcd = {w_bcd_c121, w_bcd_c1210, w_bcd_c12100, w_bcd_c121000,
+									 w_bcd_c12sgn, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}};
+					end
+					else begin
+						 r_bcd = {w_bcd_c61, w_bcd_c610, w_bcd_c6100, w_bcd_c61000,
+									 w_bcd_c6sgn, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}};
+					end
+			  end
 		  end
     end
 	 

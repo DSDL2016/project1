@@ -31,7 +31,12 @@ module bcd2seg(
 			4'b0111: seg <= 7'b1110000;
 			4'b1000: seg <= 7'b1111111;
 			4'b1001: seg <= 7'b1111011;
+			// -
 			4'b1010: seg <= 7'b0000001;
+			// Ero
+			4'b1011: seg <= 7'b1001111;
+			4'b1100: seg <= 7'b0000101;
+			4'b1101: seg <= 7'b0011101;
 			// don't care
 			default: seg <= 7'b0000000;
 		endcase
