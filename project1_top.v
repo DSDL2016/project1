@@ -60,28 +60,28 @@ module project1_top #(
 		  .width  (2*width),
 		  .digits (4)
 	 ) conv_c12(
-	     .sgn     (1),
+	     .sgn     (1'b1),
 	     .bin     (results),
 		  .bcd     ({w_bcd_c121000, w_bcd_c12100, w_bcd_c1210, w_bcd_c121}),
 		  .bcd_sgn (w_bcd_c12sgn)
 	 );
 	 
 	 bin2bcd conv_c6(
-	     .sgn     (1),
+	     .sgn     (1'b1),
 	     .bin     (results),
 		  .bcd     ({w_bcd_c61000, w_bcd_c6100, w_bcd_c610, w_bcd_c61}),
 		  .bcd_sgn (w_bcd_c6sgn)
 	 );
 	 
 	 bin2bcd conv_q(
-	     .sgn     (0),
+	     .sgn     (1'b0),
 		  .bin     (results[2*width-1:width]),
 		  .bcd     ({w_bcd_q10, w_bcd_q1}),
 		  .bcd_sgn (w_bcd_qsgn)
 	 );
 	 
 	 bin2bcd conv_r(
-	     .sgn     (0),
+	     .sgn     (1'b0),
 		  .bin     (results[width-1:0]),
 		  .bcd     ({w_bcd_r10, w_bcd_r1}),
 		  .bcd_sgn (w_bcd_rsgn)
